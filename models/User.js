@@ -1,3 +1,6 @@
+// This file defines the User model for MongoDB using Mongoose.
+// It includes fields for user ID, name, email, password, image URL, and cart items.
+// The schema is designed to prevent duplicate emails and allows for an empty cart.
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({

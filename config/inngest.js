@@ -1,5 +1,5 @@
 import { Inngest } from "inngest";
-import { connectDB } from "./db.js";
+import dbConnect from './db.js';
 import User from '../models/user.js';
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "quick-cart" });
@@ -20,7 +20,7 @@ export const syncUserCreation = inngest.createFunction(
       imageUrl: image_url
     }
 
-    await connectDB()
+    await dbConnect()
     await User.create(user)
   }
 )
@@ -39,7 +39,7 @@ export const syncUserUpdate = inngest.createFunction(
       name: first_name + " " + last_name,
       imageUrl: image_url
     }
-    await connectDB()
+    await dbConnect()
     await User.findByIdAndUpdate(id, user)
   }
 )
@@ -51,7 +51,7 @@ export const syncUserDeletion = inngest.createFunction(
   async ({ event }) => {
     const { id } = event.data   
     // Here you would typically call your database to delete a user
-    await connectDB()
+    await dbConnect()
     await User.findByIdAndDelete(id);
   }
 )

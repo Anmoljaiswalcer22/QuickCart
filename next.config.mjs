@@ -14,9 +14,7 @@ const nextConfig = {
             },
         ],
     },
-    experimental: {
-        serverComponentsExternalPackages: ['mongoose']
-    },
+    serverExternalPackages: ['mongoose'], // ✅ moved from experimental
     webpack: (config) => {
         config.resolve.fallback = {
             ...config.resolve.fallback,

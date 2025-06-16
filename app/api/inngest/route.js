@@ -1,6 +1,7 @@
 import { Inngest } from "inngest";
-import dbConnect from './db.js';
-import User from '../models/user.js';
+import dbConnect from '@/config/db';
+import User from '@/models/user';
+
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "quick-cart" });
 
@@ -55,3 +56,8 @@ export const syncUserDeletion = inngest.createFunction(
     await User.findByIdAndDelete(id);
   }
 )
+
+// Export the handler
+export const { GET, POST, PUT } = inngest.createHandler({
+  functions: [syncUserCreation, syncUserUpdate, syncUserDeletion]
+}); 

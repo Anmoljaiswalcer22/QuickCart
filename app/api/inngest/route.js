@@ -1,6 +1,6 @@
 import { Inngest } from "inngest";
 import dbConnect from '@/config/db';
-import User from '../models/user.js';
+import User from "@/models/user";
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "quick-cart" });
